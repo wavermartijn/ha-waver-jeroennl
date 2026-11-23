@@ -7,7 +7,7 @@ Haalt de data van [jeroen.nl](https://jeroen.nl) op met een API-sleutel van je e
 - **Gasprijs** per dag
 - **Opwekvoorspelling** van je zonnepanelen (per dag met p10–p90, per uur)
 
-Gebouwd als databron voor [Home EMS](https://github.com/JorisBr-NL/home-ems), maar ook los te gebruiken.
+Gebouwd als databron voor [Home EMS](https://github.com/JorisBr-NL/home-ems), maar ook los te gebruiken. Deze repository wordt onderhouden door [wavermartijn](https://github.com/wavermartijn) en is gebaseerd op [JorisBr-NL/ha-jeroen-nl](https://github.com/JorisBr-NL/ha-jeroen-nl).
 
 ## Zuinig met de API
 
@@ -34,6 +34,7 @@ Een eigen maximum per dag (standaard 6 voor stroomprijzen) laat ruimte voor ande
 | Gemiddelde prijs vandaag | gemiddelde totaalprijs van de dag | |
 | Goedkoopste moment vandaag | tijdstempel van het goedkoopste kwartier, direct bruikbaar als tijd-trigger | `end`, `price` |
 | Laagste / hoogste / gemiddelde prijs morgen, goedkoopste moment morgen | hetzelfde voor morgen; leeg tot de prijzen van morgen bekend zijn (~13:15) | |
+| Laagste / hoogste prijs over 2–5 dagen | voorspelde totaalprijs van het goedkoopste / duurste kwartier van die dag | `start`, `end`, `market`, `low`, `high` |
 | Gasprijs | totaalprijs van de lopende gasdag (EUR/m³); een gasdag loopt van 06:00 tot 06:00 | `market_price`, `gas_day`, `start`, `end`, `next_price` |
 | Opwekvoorspelling vandaag / morgen | kWh | `p10`, `p90`; bij vandaag ook `days` en `hours` |
 
@@ -190,7 +191,7 @@ Pas `0.9` en `1.1` aan om de grenzen voor goedkoop en duur te verschuiven, en `g
 Vanaf Home Assistant 2026.11 installeer je community-integraties via de ingebouwde **Marketplace** (de opvolger van HACS):
 
 1. Instellingen → **Marketplace** → rechtsboven *Add from link*.
-2. Vul `JorisBr-NL/ha-jeroen-nl` in en kies *Add*. Vraagt de Marketplace om het type, kies dan *Integration*. Heb je GitHub nog niet gekoppeld, dan vraagt de Marketplace daar eerst om.
+2. Vul `wavermartijn/ha-waver-jeroennl` in en kies *Add*. Vraagt de Marketplace om het type, kies dan *Integration*. Heb je GitHub nog niet gekoppeld, dan vraagt de Marketplace daar eerst om.
 3. Open *Jeroen.nl* in de lijst en kies *Install*. Meldt de Marketplace dat een herstart nodig is, herstart dan Home Assistant.
 
 Heb je HACS gebruikt? Dan neemt de Marketplace deze repository bij de update naar 2026.11 vanzelf over. Op Home Assistant 2026.10 of ouder werkt het nog via HACS: HACS → Integraties → menu → *Custom repositories* → deze repo, categorie *Integration*, daarna installeren en herstarten.

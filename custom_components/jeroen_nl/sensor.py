@@ -47,6 +47,7 @@ from .core import (
     Tariff,
     current_point,
     day_stats,
+    forecast_stats,
     gas_day,
     next_point,
 )
@@ -81,6 +82,12 @@ def _stats(c: JeroenCoordinator, offset: int) -> DayStats | None:
     return day_stats(_day_points(c, offset))
 
 
+def _forecast_stats(c: JeroenCoordinator, offset: int) -> DayStats | None:
+    """Lowest/highest predicted quarter of a day covered only by the forecast."""
+    day = dt_util.now().astimezone(NL_TZ).date() + timedelta(days=offset)
+    return forecast_stats(c.cache, day)
+
+
 def _all_in(c: JeroenCoordinator, p: PricePoint | None) -> float | None:
     return _tariff(c).all_in(p.price) if p else None
 
@@ -88,8 +95,12 @@ def _all_in(c: JeroenCoordinator, p: PricePoint | None) -> float | None:
 def _span(c: JeroenCoordinator, p: PricePoint | None) -> dict[str, Any]:
     if p is None:
         return {}
-    return {"start": p.start.isoformat(), "end": p.end.isoformat(), "price": _all_in(c, p),
-            "market": p.price}
+    out = {"start": p.start.isoformat(), "end": p.end.isoformat(), "price": _all_in(c, p),
+           "market": p.price}
+    if p.forecast:
+        t = _tariff(c)
+        out.update(low=t.all_in(p.low), high=t.all_in(p.high), forecast=True)
+    return out
 
 
 def _row(p: PricePoint, t: Tariff) -> dict[str, Any]:
@@ -190,6 +201,25 @@ def _day_sensors(offset: int, suffix: str) -> tuple[JeroenSensorDescription, ...
     )
 
 
+FORECAST_DAYS = range(2, 6)  # the forecast covers day+2 through day+7; expose 4 days
+
+
+def _forecast_sensors() -> tuple[JeroenSensorDescription, ...]:
+    """Lowest and highest predicted price for each forecast day."""
+    price = {"native_unit_of_measurement": UNIT_KWH_PRICE, "suggested_display_precision": 4}
+    out: list[JeroenSensorDescription] = []
+    for offset in FORECAST_DAYS:
+        for kind in ("lowest", "highest"):
+            pick = (lambda s: s.lowest) if kind == "lowest" else (lambda s: s.highest)
+            out.append(JeroenSensorDescription(
+                key=f"{kind}_price_day_{offset}", **price,
+                value_fn=lambda c, o=offset, f=pick: _all_in(c, f(s))
+                    if (s := _forecast_stats(c, o)) else None,
+                attrs_fn=lambda c, o=offset, f=pick: _span(c, f(s))
+                    if (s := _forecast_stats(c, o)) else {}))
+    return tuple(out)
+
+
 SENSORS: tuple[JeroenSensorDescription, ...] = (
     JeroenSensorDescription(
         key="electricity_price", native_unit_of_measurement=UNIT_KWH_PRICE,
@@ -205,6 +235,7 @@ SENSORS: tuple[JeroenSensorDescription, ...] = (
         value_fn=lambda c: _all_in(c, _next(c)), attrs_fn=lambda c: _span(c, _next(c))),
     *_day_sensors(0, "today"),
     *_day_sensors(1, "tomorrow"),
+    *_forecast_sensors(),
     JeroenSensorDescription(
         key="gas_price", native_unit_of_measurement=UNIT_M3_PRICE,
         state_class=SensorStateClass.MEASUREMENT, suggested_display_precision=4,

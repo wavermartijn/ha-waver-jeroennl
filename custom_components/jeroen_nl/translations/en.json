@@ -95,6 +95,30 @@
       },
       "cheapest_moment_tomorrow": {
         "name": "Cheapest moment tomorrow"
+      },
+      "lowest_price_day_2": {
+        "name": "Lowest price in 2 days (forecast)"
+      },
+      "highest_price_day_2": {
+        "name": "Highest price in 2 days (forecast)"
+      },
+      "lowest_price_day_3": {
+        "name": "Lowest price in 3 days (forecast)"
+      },
+      "highest_price_day_3": {
+        "name": "Highest price in 3 days (forecast)"
+      },
+      "lowest_price_day_4": {
+        "name": "Lowest price in 4 days (forecast)"
+      },
+      "highest_price_day_4": {
+        "name": "Highest price in 4 days (forecast)"
+      },
+      "lowest_price_day_5": {
+        "name": "Lowest price in 5 days (forecast)"
+      },
+      "highest_price_day_5": {
+        "name": "Highest price in 5 days (forecast)"
       }
     }
   }

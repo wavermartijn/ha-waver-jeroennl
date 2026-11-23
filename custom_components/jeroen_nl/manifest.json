@@ -2,13 +2,13 @@
   "domain": "jeroen_nl",
   "name": "Jeroen.nl",
   "codeowners": [
-    "@JorisBr-NL"
+    "@wavermartijn"
   ],
   "config_flow": true,
-  "documentation": "https://github.com/JorisBr-NL/ha-jeroen-nl",
+  "documentation": "https://github.com/wavermartijn/ha-waver-jeroennl",
   "integration_type": "service",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/JorisBr-NL/ha-jeroen-nl/issues",
+  "issue_tracker": "https://github.com/wavermartijn/ha-waver-jeroennl/issues",
   "requirements": [],
-  "version": "0.2.1"
+  "version": "0.3.0"
 }

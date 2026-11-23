@@ -94,6 +94,18 @@ def test_day_stats_lowest_highest_average():
     assert core.day_stats([]) is None
 
 
+def test_forecast_stats_uses_only_that_days_quarters():
+    cache = core.Cache()
+    cache.forecast, _ = core.parse_prices(load("forecast.json"))
+    stats = core.forecast_stats(cache, date(2026, 10, 28))
+    assert stats is not None
+    assert stats.lowest.forecast and stats.lowest.low is not None
+    assert stats.lowest.price <= stats.average <= stats.highest.price
+    assert stats.lowest.price < stats.highest.price
+    # a day outside the forecast has no stats (sensor shows unknown)
+    assert core.forecast_stats(cache, date(2026, 10, 29)) is None
+
+
 def test_current_and_next_point_skip_forecast():
     pts = _points([0.1, 0.2, 0.3])
     fc = core.PricePoint(pts[-1].end, 0.9, 0.8, 1.0, True)

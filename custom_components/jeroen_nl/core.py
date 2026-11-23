@@ -206,6 +206,11 @@ def day_stats(points: list[PricePoint]) -> DayStats | None:
     )
 
 
+def forecast_stats(cache: Cache, day: date) -> DayStats | None:
+    """Lowest, highest and average of the forecast quarters of one Dutch day."""
+    return day_stats([p for p in cache.forecast if p.local_date == day])
+
+
 def current_point(points: list[PricePoint], now: datetime) -> PricePoint | None:
     return next((p for p in points if p.start <= now < p.end and not p.forecast), None)
 

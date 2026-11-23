@@ -95,6 +95,30 @@
       },
       "cheapest_moment_tomorrow": {
         "name": "Goedkoopste moment morgen"
+      },
+      "lowest_price_day_2": {
+        "name": "Laagste prijs over 2 dagen (voorspelling)"
+      },
+      "highest_price_day_2": {
+        "name": "Hoogste prijs over 2 dagen (voorspelling)"
+      },
+      "lowest_price_day_3": {
+        "name": "Laagste prijs over 3 dagen (voorspelling)"
+      },
+      "highest_price_day_3": {
+        "name": "Hoogste prijs over 3 dagen (voorspelling)"
+      },
+      "lowest_price_day_4": {
+        "name": "Laagste prijs over 4 dagen (voorspelling)"
+      },
+      "highest_price_day_4": {
+        "name": "Hoogste prijs over 4 dagen (voorspelling)"
+      },
+      "lowest_price_day_5": {
+        "name": "Laagste prijs over 5 dagen (voorspelling)"
+      },
+      "highest_price_day_5": {
+        "name": "Hoogste prijs over 5 dagen (voorspelling)"
       }
     }
   }
