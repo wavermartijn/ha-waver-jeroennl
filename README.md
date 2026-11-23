@@ -191,7 +191,7 @@ Pas `0.9` en `1.1` aan om de grenzen voor goedkoop en duur te verschuiven, en `g
 Vanaf Home Assistant 2026.11 installeer je community-integraties via de ingebouwde **Marketplace** (de opvolger van HACS):
 
 1. Instellingen → **Marketplace** → rechtsboven *Add from link*.
-2. Vul `JorisBr-NL/ha-jeroen-nl` in en kies *Add*. Vraagt de Marketplace om het type, kies dan *Integration*. Heb je GitHub nog niet gekoppeld, dan vraagt de Marketplace daar eerst om.
+2. Vul `wavermartijn/ha-waver-jeroennl` in en kies *Add*. Vraagt de Marketplace om het type, kies dan *Integration*. Heb je GitHub nog niet gekoppeld, dan vraagt de Marketplace daar eerst om.
 3. Open *Jeroen.nl* in de lijst en kies *Install*. Meldt de Marketplace dat een herstart nodig is, herstart dan Home Assistant.
 
 Heb je HACS gebruikt? Dan neemt de Marketplace deze repository bij de update naar 2026.11 vanzelf over. Op Home Assistant 2026.10 of ouder werkt het nog via HACS: HACS → Integraties → menu → *Custom repositories* → deze repo, categorie *Integration*, daarna installeren en herstarten.
