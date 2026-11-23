@@ -7,7 +7,7 @@ Haalt de data van [jeroen.nl](https://jeroen.nl) op met een API-sleutel van je e
 - **Gasprijs** per dag
 - **Opwekvoorspelling** van je zonnepanelen (per dag met p10–p90, per uur)
 
-Gebouwd als databron voor [Home EMS](https://github.com/JorisBr-NL/home-ems), maar ook los te gebruiken. Deze repository wordt onderhouden door [wavermartijn](https://github.com/wavermartijn) en is gebaseerd op [JorisBr-NL/ha-jeroen-nl](https://github.com/JorisBr-NL/ha-jeroen-nl).
+Gebouwd als databron voor [Home EMS](https://github.com/JorisBr-NL/home-ems), maar ook los te gebruiken. Deze repository wordt onderhouden door [wavermartijn](https://github.com/wavermartijn).
 
 ## Zuinig met de API
 
@@ -212,3 +212,7 @@ Data: jeroen.nl. Wat je met de data mag: zie de [API- en MCP-voorwaarden](https:
 ## Icoon
 
 Het icoon in `custom_components/jeroen_nl/brand/` is een eigen ontwerp voor deze integratie. Het is geen logo van jeroen.nl, en deze integratie is niet officieel van of verbonden aan jeroen.nl.
+
+## Credits
+
+Oorspronkelijk ontwikkeld door [JorisBr-NL](https://github.com/JorisBr-NL/ha-jeroen-nl); deze repository wordt verder onderhouden door [wavermartijn](https://github.com/wavermartijn).
